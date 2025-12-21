@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -30,8 +32,10 @@ const Login = () => {
 
     const data = await response.json();
     console.log("Response from server 👉", data);
+
     if (data.status) {
       alert("Login successful!");
+      navigate("/");
     } else {
       alert("Login failed. Please check your credentials.");
     }
