@@ -5,6 +5,7 @@ import Contact from "./pages/Contact";
 import Service from "./pages/Service";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         <Route path="/service" element={<Service />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+          {/* Catch-all 404 route */}
+          <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
