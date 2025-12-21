@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { NavLink,useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -30,17 +32,18 @@ const Login = () => {
       body: JSON.stringify(formData),
     });
 
-    const data = await response.json();
-    console.log("Response from server 👉", data);
-
-    if (data.status) {
-      alert("Login successful!");
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Response from server 👉", data);
+      //  token is in data.token
+      storeTokenInLS(data.token);
+      // localStorage.setItem("token", data.token);
+      setFormData({ email: "", password: "" });
       navigate("/");
     } else {
-      alert("Login failed. Please check your credentials.");
+      console.error("Error during registration:");
     }
   };
-
   return (
     <>
       <Navbar />

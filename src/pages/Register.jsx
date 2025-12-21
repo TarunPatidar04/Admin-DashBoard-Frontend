@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,8 +11,9 @@ const Register = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -32,9 +34,17 @@ const Register = () => {
         body: JSON.stringify(formData),
       }
     );
-
-    const data = await response.json();
-    console.log("Response from server 👉", data);
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Response from server 👉", data);
+      //  token is in data.token
+      storeTokenInLS(data.token);
+      // localStorage.setItem("token", data.token);
+      setFormData({ username: "", email: "", phone: "", password: "" });
+      navigate("/");
+    } else {
+      console.error("Error during registration:");
+    }
   };
 
   return (
