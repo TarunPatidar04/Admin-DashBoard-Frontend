@@ -1,7 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../store/auth";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <>
       <Navbar />
@@ -24,12 +27,14 @@ const Home = () => {
             >
               Get Started
             </a>
-            <a
-              href="/login"
-              className="px-8 py-3 border border-white rounded-lg hover:bg-white hover:text-black transition"
-            >
-              Login
-            </a>
+            {isLoggedIn ? null : (
+              <Link
+                to="/login"
+                className="px-8 py-3 border border-white rounded-lg hover:bg-white hover:text-black transition"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -41,8 +46,8 @@ const Home = () => {
             <h2 className="text-4xl font-bold mb-6">About Our Platform</h2>
             <p className="text-gray-600 mb-4">
               This project is designed for developers who want a clean and
-              scalable UI architecture. Perfect for startups, SaaS products
-              and personal projects.
+              scalable UI architecture. Perfect for startups, SaaS products and
+              personal projects.
             </p>
             <p className="text-gray-600">
               Built with best practices and ready to connect with any backend
@@ -76,9 +81,7 @@ const Home = () => {
                 key={i}
                 className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition"
               >
-                <h3 className="text-xl font-semibold mb-3">
-                  🚀 {feature}
-                </h3>
+                <h3 className="text-xl font-semibold mb-3">🚀 {feature}</h3>
                 <p className="text-gray-600">
                   Built using industry best practices for performance and
                   scalability.
@@ -92,9 +95,7 @@ const Home = () => {
       {/* HOW IT WORKS */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16">
-            How It Works
-          </h2>
+          <h2 className="text-4xl font-bold text-center mb-16">How It Works</h2>
 
           <div className="grid md:grid-cols-3 gap-10 text-center">
             <div>
@@ -130,13 +131,10 @@ const Home = () => {
 
           <div className="grid md:grid-cols-3 gap-10">
             {["Tarun", "Rahul", "Aman"].map((name, i) => (
-              <div
-                key={i}
-                className="bg-gray-800 p-8 rounded-xl"
-              >
+              <div key={i} className="bg-gray-800 p-8 rounded-xl">
                 <p className="text-gray-300 mb-4">
-                  “This starter UI saved me hours of setup time. Clean and
-                  easy to extend.”
+                  “This starter UI saved me hours of setup time. Clean and easy
+                  to extend.”
                 </p>
                 <h4 className="font-semibold">— {name}</h4>
               </div>
@@ -147,12 +145,8 @@ const Home = () => {
 
       {/* CTA */}
       <section className="py-24 bg-blue-600 text-white text-center">
-        <h2 className="text-4xl font-bold mb-6">
-          Ready to Get Started?
-        </h2>
-        <p className="mb-8">
-          Create your account and start building today.
-        </p>
+        <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
+        <p className="mb-8">Create your account and start building today.</p>
         <a
           href="/register"
           className="px-10 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition"
