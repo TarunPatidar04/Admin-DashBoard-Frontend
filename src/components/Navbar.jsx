@@ -23,6 +23,13 @@ const Navbar = () => {
             </NavLink>
           </li>
 
+
+          <li>
+            <NavLink to="/service" className="hover:text-blue-400 transition">
+              service
+            </NavLink>
+          </li>
+
           <li>
             <NavLink to="/contact" className="hover:text-blue-400 transition">
               Contact
