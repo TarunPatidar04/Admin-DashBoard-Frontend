@@ -19,9 +19,20 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Register Data 👉", formData);
+
+    const response= await fetch('http://localhost:3000/api/auth/postregister',{
+      method: 'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    const data= await response.json();
+    console.log("Response from server 👉", data);
   };
 
   return (
