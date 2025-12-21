@@ -7,7 +7,7 @@ const Home = () => {
       <Navbar />
 
       {/* HERO */}
-      <section className="bg-gradient-to-r from-gray-900 to-black text-white">
+      <section className="bg-linear-to-r from-gray-900 to-black text-white">
         <div className="max-w-7xl mx-auto px-6 py-28 text-center">
           <h1 className="text-5xl font-bold mb-6">
             Build Modern Web Applications

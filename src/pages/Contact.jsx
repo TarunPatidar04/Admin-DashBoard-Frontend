@@ -30,7 +30,7 @@ const Contact = () => {
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
           <p className="max-w-2xl mx-auto text-gray-200">
             Have questions or want to work with us?  
-            Fill the form and we’ll get back to you.
+            Fill the form and we get back to you.
           </p>
         </div>
       </section>
@@ -111,7 +111,7 @@ const Contact = () => {
             We usually respond within 24 hours
           </h3>
           <p className="text-gray-600">
-            Your message is important to us. Let’s build something great together.
+            Your message is important to us. Lets build something great together.
           </p>
         </div>
       </section>
