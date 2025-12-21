@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import { NavLink } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -34,12 +35,9 @@ const Register = () => {
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            
             {/* Username */}
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Username
-              </label>
+              <label className="block text-sm font-medium mb-1">Username</label>
               <input
                 type="text"
                 name="username"
@@ -52,9 +50,7 @@ const Register = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Email
-              </label>
+              <label className="block text-sm font-medium mb-1">Email</label>
               <input
                 type="email"
                 name="email"
@@ -67,9 +63,7 @@ const Register = () => {
 
             {/* Phone */}
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Phone
-              </label>
+              <label className="block text-sm font-medium mb-1">Phone</label>
               <input
                 type="tel"
                 name="phone"
@@ -82,9 +76,7 @@ const Register = () => {
 
             {/* Password with Show/Hide */}
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Password
-              </label>
+              <label className="block text-sm font-medium mb-1">Password</label>
 
               <div className="relative">
                 <input
@@ -113,8 +105,13 @@ const Register = () => {
             >
               Register
             </button>
-
           </form>
+          <p className="text-sm text-center mt-4">
+            Already have an account?{" "}
+            <NavLink to="/login" className="text-blue-600 hover:underline">
+              Login
+            </NavLink>
+          </p>
         </div>
       </div>
     </>
