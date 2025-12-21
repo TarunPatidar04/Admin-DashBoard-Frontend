@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,7 @@ const Register = () => {
     phone: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -23,16 +24,25 @@ const Register = () => {
     e.preventDefault();
     console.log("Register Data 👉", formData);
 
-    const response= await fetch('http://localhost:3000/api/auth/postregister',{
-      method: 'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify(formData)
-    });
-    
-    const data= await response.json();
+    const response = await fetch(
+      "http://localhost:3000/api/auth/postregister",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await response.json();
     console.log("Response from server 👉", data);
+
+    if (data) {
+      navigate("/login");
+    } else {
+      alert("Registration failed. Please try again.");
+    }
   };
 
   return (
