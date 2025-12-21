@@ -30,6 +30,11 @@ const Login = () => {
 
     const data = await response.json();
     console.log("Response from server 👉", data);
+    if (data.status) {
+      alert("Login successful!");
+    } else {
+      alert("Login failed. Please check your credentials.");
+    }
   };
 
   return (
@@ -38,17 +43,12 @@ const Login = () => {
 
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-md">
-          <h2 className="text-2xl font-bold text-center mb-6">
-            Login
-          </h2>
+          <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Email
-              </label>
+              <label className="block text-sm font-medium mb-1">Email</label>
               <input
                 type="email"
                 name="email"
@@ -61,9 +61,7 @@ const Login = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Password
-              </label>
+              <label className="block text-sm font-medium mb-1">Password</label>
 
               <div className="relative">
                 <input
@@ -92,7 +90,6 @@ const Login = () => {
             >
               Login
             </button>
-
           </form>
 
           {/* Register link */}
