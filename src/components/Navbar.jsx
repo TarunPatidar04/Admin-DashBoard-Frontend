@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 const Navbar = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <header className="w-full bg-gray-900 text-white">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -23,7 +25,6 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-
           <li>
             <NavLink to="/service" className="hover:text-blue-400 transition">
               service
@@ -36,23 +37,36 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <li>
-            <NavLink
-              to="/login"
-              className="px-4 py-2 border border-blue-500 rounded hover:bg-blue-500 transition"
-            >
-              Login
-            </NavLink>
-          </li>
+          {isLoggedIn ? (
+            <li>
+              <NavLink
+                to="/logout"
+                className="px-4 py-2 border border-blue-500 rounded hover:bg-blue-500 transition"
+              >
+                Logout
+              </NavLink>
+            </li>
+          ) : (
+            <>
+              <li>
+                <NavLink
+                  to="/login"
+                  className="px-4 py-2 border border-blue-500 rounded hover:bg-blue-500 transition"
+                >
+                  Login
+                </NavLink>
+              </li>
 
-          <li>
-            <NavLink
-              to="/register"
-              className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 transition"
-            >
-              Register
-            </NavLink>
-          </li>
+              <li>
+                <NavLink
+                  to="/register"
+                  className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 transition"
+                >
+                  Register
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>
