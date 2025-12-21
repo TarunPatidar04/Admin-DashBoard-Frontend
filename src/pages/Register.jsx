@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,6 @@ const Register = () => {
     phone: "",
     password: "",
   });
-  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -22,7 +21,6 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Register Data 👉", formData);
 
     const response = await fetch(
       "http://localhost:3000/api/auth/postregister",
@@ -37,12 +35,6 @@ const Register = () => {
 
     const data = await response.json();
     console.log("Response from server 👉", data);
-
-    if (data) {
-      navigate("/login");
-    } else {
-      alert("Registration failed. Please try again.");
-    }
   };
 
   return (
