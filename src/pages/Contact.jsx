@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../store/auth";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,17 @@ const Contact = () => {
     message: "",
   });
 
+  const [userData, setUserData] = useState(true);
+  const { user } = useAuth();
+
+  if (userData && user) {
+    setFormData({
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
+    setUserData(false);
+  }
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -29,8 +41,8 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-6 py-24 text-center">
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
           <p className="max-w-2xl mx-auto text-gray-200">
-            Have questions or want to work with us?  
-            Fill the form and we get back to you.
+            Have questions or want to work with us? Fill the form and we get
+            back to you.
           </p>
         </div>
       </section>
@@ -39,13 +51,11 @@ const Contact = () => {
       <section className="py-24 bg-gray-100">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-white p-10 rounded-xl shadow-lg">
-
             <h2 className="text-3xl font-bold text-center mb-8">
               Get in Touch
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-
               {/* Username */}
               <div>
                 <label className="block text-sm font-medium mb-1">
@@ -63,9 +73,7 @@ const Contact = () => {
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Email
-                </label>
+                <label className="block text-sm font-medium mb-1">Email</label>
                 <input
                   type="email"
                   name="email"
@@ -98,7 +106,6 @@ const Contact = () => {
               >
                 Send Message
               </button>
-
             </form>
           </div>
         </div>
@@ -111,7 +118,8 @@ const Contact = () => {
             We usually respond within 24 hours
           </h3>
           <p className="text-gray-600">
-            Your message is important to us. Lets build something great together.
+            Your message is important to us. Lets build something great
+            together.
           </p>
         </div>
       </section>
